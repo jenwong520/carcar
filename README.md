@@ -2,8 +2,8 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Jen Wong - Service microservice
+* Rachel McReynolds - Sales microservice
 
 ## Design
 
