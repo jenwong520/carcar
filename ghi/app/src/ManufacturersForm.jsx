@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-function ManufacturersForm(props) {
+function ManufacturersForm() {
     const [name, setName] = useState('');
 
     const handleNameChange = (event) => {

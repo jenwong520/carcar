@@ -19,6 +19,9 @@ function Nav() {
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/automobiles/">Automobile</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/automobiles/create">Create an Automobile</NavLink>
+            </li>
           </ul>
         </div>
       </div>
@@ -27,5 +30,3 @@ function Nav() {
 }
 
 export default Nav;
-
-
