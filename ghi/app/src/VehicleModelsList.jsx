@@ -42,7 +42,9 @@ function ModelsList(props) {
                                 <td>{models.name} </td>
                                 <td>{models.manufacturer.name}</td>
                                 <td>
-                                    <img src={models.picture_url} alt="Logo" width="auto" height="200"/>
+                                    <div style={{ width: '25%', height: '25%', overflow: 'hidden', position: 'center' }} >
+                                        <img src={models.picture_url} alt="Logo" width="100%" height="100%" objectFit="cover" objectPosition="center" position="absolute" />
+                                    </div>
                                 </td>
                                 <td>
                                     <button onClick={() => deleteModels(models.id)} className='btn btn-danger'>Delete</button>

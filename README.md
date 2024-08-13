@@ -2,8 +2,8 @@
 
 Team:
 
-* Jen - Automobile Service
-* Rachel - Sales Service
+* Jen Wong - Automobile Microservice
+* Rachel McReynolds - Sales Microservice
 
 ## Design
 
