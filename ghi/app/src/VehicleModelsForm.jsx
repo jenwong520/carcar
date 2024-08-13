@@ -6,7 +6,6 @@ function VehicleModelsForm() {
     const [pictureUrl, setPictureUrl] = useState('');
     const [manufacturer, setManufacturer] = useState('');
 
-
     const handleNameChange = (event) => {
         const value = event.target.value;
         setName(value);
@@ -30,7 +29,6 @@ function VehicleModelsForm() {
             picture_url: pictureUrl,
             manufacturer_id: manufacturer,
         };
-        // console.log("submitting data", data)
 
         const modelsUrl = 'http://localhost:8100/api/models/';
         const fetchConfig = {
@@ -69,7 +67,6 @@ const resetForm = () => {
         if (response.ok) {
             const data = await response.json();
             setManufacturers(data.manufacturers);
-            // console.log(data.manufacturers)
         }
     }
 
