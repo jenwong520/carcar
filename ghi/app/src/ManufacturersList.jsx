@@ -1,29 +1,7 @@
 function ManufacturersList(props) {
-	// const [manufacturers, setManufacturers] = useState([]);
-
-	// const fetchManufacturers = async () => {
-	// 	const url = 'http://localhost:8100/api/manufacturers/';
-	// 	const response = await fetch(url);
-	// 	if (response.ok) {
-	// 		const data = await response.json();
-	// 		setManufacturers(data.manufacturers);
-	// 	}
-	// };
-
-    // const deleteShoes = async (shoesId) => {
-    //     const url = `http://localhost:8080/api/shoes/${shoesId}/`;
-    //     const response = await fetch(url, { method: "DELETE" });
-    //     if (response.ok) {
-    //         setShoes(shoes.filter(shoes => shoes.id !== shoesId));
-    //     }
-    // };
-
-	// useEffect(() => {
-	// 	fetchShoes();
-	// }, []);
-
     return (
 		<>
+		<h1>Manufacturers</h1>
 			<table className="table table-striped">
 				<thead>
 					<tr>
@@ -43,5 +21,4 @@ function ManufacturersList(props) {
 		</>
 	);
 }
-
 export default ManufacturersList;
