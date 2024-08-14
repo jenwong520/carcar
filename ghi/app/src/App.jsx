@@ -8,9 +8,10 @@ import VehicleModelsForm from './VehicleModelsForm';
 import AutomobilesList from './AutomobilesList';
 import AutomobilesForm from './AutomobilesForm';
 import TechniciansList from './TechniciansList';
+import TechniciansForm from './TechniciansForm';
 
 function App(props) {
-	if (props.manufacturers === undefined && props.models === undefined && props.autos === undefined) {
+	if (props.manufacturers === undefined && props.models === undefined && props.autos === undefined && props.technicians === undefined) {
 		return null;
 	}
 	return (
@@ -26,6 +27,7 @@ function App(props) {
 					<Route path="/automobiles/" element={<AutomobilesList autos={props.autos} />} />
 					<Route path="/automobiles/create/" element={<AutomobilesForm />} />
 					<Route path="/technicians/" element={<TechniciansList technicians={props.technicians} />} />
+					<Route path="/technicians/create/" element={<TechniciansForm />} />
 				</Routes>
 			</div>
 		</BrowserRouter>
