@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Technician(models.Model):
@@ -15,12 +16,14 @@ class AutomobileVO(models.Model):
 
 class Appointment(models.Model):
     STATUS_CHOICES = [
-        ('cancel', 'Cancel'),
-        ('finish', 'Finish')
+        ('active', "Active"),
+        ('canceled', 'Canceled'),
+        ('finished', 'Finished'),
     ]
     date_time = models.DateTimeField()
     reason = models.CharField(max_length=200)
-    status = models.CharField(max_length=10,
+    status = models.CharField(
+        max_length=10,
         choices=STATUS_CHOICES,
         default='active',
     )
@@ -28,6 +31,13 @@ class Appointment(models.Model):
     customer = models.CharField(max_length=200)
     technician = models.ForeignKey(
         Technician,
-        related_name="appointment",
+        related_name="appointments",
         on_delete=models.CASCADE,
     )
+
+    def update_status(self):
+        if self.status == 'active':
+            self.status = 'canceled'
+        else:
+            self.status = 'finished'
+        self.save()

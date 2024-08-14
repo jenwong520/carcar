@@ -1,11 +1,13 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
+from django.shortcuts import get_object_or_404
 import json
 
 from .encoders import (
     TechnicianEncoder,
+    AppointmentEncoder
 )
-from .models import Technician
+from .models import Technician, Appointment
 
 # Create your views here.
 @require_http_methods(["GET", "POST"])
@@ -76,3 +78,96 @@ def api_technician(request, pk):
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
+
+@require_http_methods(["GET", "POST"])
+def api_list_appointments(request):
+    if request.method == "GET":
+        appointments = Appointment.objects.all()
+        return JsonResponse(
+            {"appointments": appointments},
+            encoder=AppointmentEncoder
+        )
+    else:
+        try:
+            content = json.loads(request.body)
+            technician_id = content["technician_id"]
+            technician = Technician.objects.get(id=technician_id)
+            content["technician"] = technician
+            appointment = Appointment.objects.create(**content)
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+        except:
+            response = JsonResponse(
+                {"message": "Could not create appointment"}
+            )
+            response.status_code = 400
+            return response
+
+@require_http_methods(["DELETE", "GET", "PUT"])
+def api_appointment(request, id):
+    if request.method == "GET":
+        try:
+            appointment = Appointment.objects.get(id=id)
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False
+            )
+        except Appointment.DoesNotExist:
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
+    elif request.method == "DELETE":
+        try:
+            appointment = Appointment.objects.get(id=id)
+            appointment.delete()
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+        except Appointment.DoesNotExist:
+            return JsonResponse({"message": "Does not exist"})
+    else: # PUT
+        try:
+            content = json.loads(request.body)
+            appointment = Appointment.objects.get(id=id)
+            props = ["date_time", "reason", "status", "vin", "customer"]
+            for prop in props:
+                if prop in content:
+                    setattr(appointment, prop, content[prop])
+            appointment.save()
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+        except Appointment.DoesNotExist:
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
+
+@require_http_methods(["PUT"])
+def cancel_appointment(request, id):
+    appointment = get_object_or_404(Appointment, id=id)
+    appointment.status = 'canceled'
+    appointment.save()
+    return JsonResponse(
+        appointment,
+        encoder=AppointmentEncoder,
+        safe=False,
+    )
+
+@require_http_methods(["PUT"])
+def finish_appointment(request, id):
+    appointment = get_object_or_404(Appointment, id=id)
+    appointment.status = 'finished'
+    appointment.save()
+    return JsonResponse(
+        appointment,
+        encoder=AppointmentEncoder,
+        safe=False,
+    )
