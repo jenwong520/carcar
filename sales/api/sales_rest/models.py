@@ -1,6 +1,7 @@
 from django.db import models
 
 class AutomobileVO(models.Model):
+    import_href = models.URLField(unique=True, blank=True)
     vin = models.CharField(max_length=17, unique=True)
     sold = models.BooleanField(default=False)
 

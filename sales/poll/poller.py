@@ -12,16 +12,25 @@ django.setup()
 
 # Import models from sales_rest, here.
 # from sales_rest.models import Something
+from sales_rest.models import AutomobileVO
 
+def get_sales():
+    response = requests.get("http://inventory-api:8000/api/automobiles")
+    content = json.loads(response.content)
+    for auto in content["autos"]:
+        AutomobileVO.objects.update_or_create(
+            vin=auto["vin"],
+            defaults={
+                "vin": auto["vin"],
+                "sold": auto.get["sold", False],
+                },
+        )
 
 def poll():
     while True:
         print("Sales poller polling for data")
         try:
-            # Write your polling logic, here
-            # Do not copy entire file
-
-            pass
+            get_sales()
         except Exception as e:
             traceback.print_exc()
             print(e, file=sys.stderr)
