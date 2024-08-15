@@ -1,53 +1,58 @@
 import React, { useEffect, useState } from 'react';
 
-function ModelsList(props) {
-    const [models, setModels] = useState([]);
+function SalesList() {
+    const [sales, setSales] = useState([]);
 
-    const fetchModels = async () => {
-        const url = 'http://localhost:8100/api/models/';
+    const fetchSales = async () => {
+        const url = 'http://localhost:8090/api/sales/';
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            setModels(data.models);
+            setSales(data.sales);
         }
     };
 
-    const deleteModels = async (modelId) => {
-        const url = `http://localhost:8100/api/models/${modelId}/`;
+    const deleteSales = async (saleId) => {
+        const url = `http://localhost:8090/api/sales/${saleId}/`;
         const response = await fetch(url, { method: "DELETE" });
         if (response.ok) {
-            setModels(models.filter(model => model.id !== modelId));
+            setSales(sales.filter(sale => sale.id !== saleId));
         }
     };
 
     useEffect(() => {
-        fetchModels();
+        fetchSales();
     }, []);
+
+    const formatPrice = (price) => {
+        return `$${parseFloat(price).toFixed(2)}`;
+    };
 
     return (
         <>
-        <h1>Models</h1>
-            <table className='table table-striped'>
+        <h1>Sales</h1>
+            <table className='table table-striped border-bottom'>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Manufacturer</th>
-                        <th>Picture</th>
+                        <th>Salesperson Employee ID</th>
+                        <th>Salesperson Name</th>
+                        <th>Customer</th>
+                        <th>VIN</th>
+                        <th>Price</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {props.models.map(models => {
+                    {sales.map(sales => {
                         return (
-                            <tr key={models.id}>
-                                <td>{models.name} </td>
-                                <td>{models.manufacturer.name}</td>
+                            <tr key={sales.id}>
+                                <td>{sales.salesperson.employee_id} </td>
+                                <td>{sales.salesperson.first_name} {sales.salesperson.last_name} </td>
+                                <td>{sales.customer.first_name} {sales.customer.last_name}</td>
+                                <td>{sales.automobile.vin}</td>
+                                <td>{formatPrice(sales.price)}</td>
                                 <td>
-                                    <div style={{ width: '25%', height: '25%', overflow: 'hidden', position: 'center' }} >
-                                        <img src={models.picture_url} alt="Logo" width="100%" height="100%" objectFit="cover" objectPosition="center" position="absolute" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <button onClick={() => deleteModels(models.id)} className='btn btn-danger'>Delete</button>
+                                    <button onClick={() => deleteSales(sales.id)} className='btn btn-danger'>Delete</button>
                                 </td>
                             </tr>
                         );
@@ -58,4 +63,4 @@ function ModelsList(props) {
     );
 }
 
-export default ModelsList;
+export default SalesList;

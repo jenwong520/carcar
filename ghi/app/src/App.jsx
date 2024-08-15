@@ -9,8 +9,10 @@ import AutomobilesList from './AutomobilesList';
 import AutomobilesForm from './AutomobilesForm';
 import SalespeopleList from './SalespeopleList';
 import SalespersonForm from './SalespersonForm';
-import CustomersList from './CustomersList'
+import CustomersList from './CustomersList';
 import CustomerForm from './CustomerForm';
+import SalesList from './SalesList';
+import SaleForm from './SaleForm';
 
 function App(props) {
 	if (
@@ -18,7 +20,8 @@ function App(props) {
 		props.models === undefined &&
 		props.autos === undefined &&
 		props.salespeople === undefined &&
-		props.customers === undefined
+		props.customers === undefined &&
+		props.sales === undefined
 	) {
 		return null;
 	}
@@ -38,6 +41,8 @@ function App(props) {
 					<Route path="/salespeople/create/" element={<SalespersonForm />} />
 					<Route path="/customers/" element={<CustomersList customers={props.customers} />} />
 					<Route path="/customers/create/" element={<CustomerForm />} />
+					<Route path="/sales/" element={<SalesList customers={props.sales} />} />
+					<Route path="/sales/create/" element={<SaleForm />} />
 				</Routes>
 			</div>
 		</BrowserRouter>

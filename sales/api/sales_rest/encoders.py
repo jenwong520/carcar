@@ -50,5 +50,5 @@ class SaleEncoder(ModelEncoder):
 
     def get_extra_data(self, o):
         return {
-            "price": float(round(o.price, 2)),
+            "price": float(o.price),
         }

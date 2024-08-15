@@ -61,7 +61,7 @@ function SalespersonForm() {
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
             <h1>Add A Salesperson</h1>
-            <form onSubmit={handleSubmit} id="create-manufacturer-form">
+            <form onSubmit={handleSubmit} id="create-salesperson-form">
               <div className="form-floating mb-3">
                 <input value={firstName} onChange={handleFirstNameChange} placeholder="First Name" required type="text" name="first_name" id="first_name" className="form-control" />
                 <label htmlFor="first_name">First Name</label>
