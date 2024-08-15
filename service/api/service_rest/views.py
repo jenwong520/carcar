@@ -7,7 +7,7 @@ from .encoders import (
     TechnicianEncoder,
     AppointmentEncoder
 )
-from .models import Technician, Appointment
+from .models import Technician, Appointment, AutomobileVO
 
 # Create your views here.
 @require_http_methods(["GET", "POST"])
@@ -94,6 +94,7 @@ def api_list_appointments(request):
             technician = Technician.objects.get(id=technician_id)
             content["technician"] = technician
             appointment = Appointment.objects.create(**content)
+
             return JsonResponse(
                 appointment,
                 encoder=AppointmentEncoder,
