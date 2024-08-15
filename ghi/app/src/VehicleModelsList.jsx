@@ -33,6 +33,7 @@ function ModelsList(props) {
                         <th>Name</th>
                         <th>Manufacturer</th>
                         <th>Picture</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
