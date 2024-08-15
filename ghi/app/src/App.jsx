@@ -7,9 +7,16 @@ import VehicleModelsList from './VehicleModelsList';
 import VehicleModelsForm from './VehicleModelsForm';
 import AutomobilesList from './AutomobilesList';
 import AutomobilesForm from './AutomobilesForm';
+import SalespeopleList from './SalespeopleList';
+import SalespersonForm from './SalespersonForm';
 
 function App(props) {
-	if (props.manufacturers === undefined && props.models === undefined && props.autos === undefined) {
+	if (
+		props.manufacturers === undefined &&
+		props.models === undefined &&
+		props.autos === undefined &&
+		props.salespeople === undefined
+	) {
 		return null;
 	}
 	return (
@@ -24,6 +31,8 @@ function App(props) {
 					<Route path="/models/create" element={<VehicleModelsForm />} />
 					<Route path="/automobiles/" element={<AutomobilesList autos={props.autos} />} />
 					<Route path="/automobiles/create/" element={<AutomobilesForm />} />
+					<Route path="/salespeople/" element={<SalespeopleList autos={props.salespeople} />} />
+					<Route path="/salespeople/create/" element={<SalespersonForm />} />
 				</Routes>
 			</div>
 		</BrowserRouter>

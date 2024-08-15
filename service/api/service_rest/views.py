@@ -9,7 +9,6 @@ from .encoders import (
 )
 from .models import Technician, Appointment
 
-# Create your views here.
 @require_http_methods(["GET", "POST"])
 def api_list_technicians(request):
     if request.method == "GET":

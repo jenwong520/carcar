@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (
     api_saleperson,
-    api_salespersons,
+    api_salespeople,
     api_customer,
     api_customers,
     api_sale,
@@ -10,7 +10,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path("salespeople/", api_salespersons, name="api_salespersons"),
+    path("salespeople/", api_salespeople, name="api_salespeople"),
     path("salespeople/<int:pk>/", api_saleperson, name="api_saleperson"),
     path("customers/", api_customers, name="api_customers"),
     path("customers/<int:pk>/", api_customer, name="api_customer"),

@@ -12,11 +12,11 @@ from .encoders import (
 
 
 @require_http_methods(["GET", "POST"])
-def api_salespersons(request):
+def api_salespeople(request):
     if request.method == "GET":
-        salespersons = Salesperson.objects.all()
+        salespeople = Salesperson.objects.all()
         return JsonResponse(
-            {"salespersons": salespersons},
+            {"salespeople": salespeople},
             encoder=SalespersonEncoder,
         )
     else:
