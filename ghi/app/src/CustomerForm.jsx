@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 function CustomerForm() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [address, setAddress] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [address, setAddress] = useState('');
 
     const handleFirstNameChange = (event) => {
         const value = event.target.value;
@@ -16,14 +16,14 @@ function CustomerForm() {
         setLastName(value);
     };
 
-    const handleAddressChange = (event) => {
-        const value = event.target.value;
-        setAddress(value);
-    };
-
     const handlePhoneNumberChange = (event) => {
         const value = event.target.value;
         setPhoneNumber(value);
+    };
+
+    const handleAddressChange = (event) => {
+        const value = event.target.value;
+        setAddress(value);
     };
 
     const handleSubmit = async (event) => {
@@ -32,8 +32,8 @@ function CustomerForm() {
         const data = {
           first_name: firstName,
           last_name: lastName,
-          address,
           phone_number: phoneNumber,
+          address,
         };
 
         const customersUrl = 'http://localhost:8090/api/customers/';
@@ -53,7 +53,7 @@ function CustomerForm() {
 
             setFirstName('');
             setLastName('');
-            setAddress('');
+            setPhoneNumber('');
             setAddress('');
 
           } else {
@@ -79,12 +79,12 @@ function CustomerForm() {
                 <label htmlFor="last_name">Last Name</label>
               </div>
               <div className="form-floating mb-3">
-                <input value={address} onChange={handleAddressChange} placeholder="Address" required type="text" name="address" id="address" className="form-control" />
-                <label htmlFor="address">Address</label>
-              </div>
-              <div className="form-floating mb-3">
                 <input value={phoneNumber} onChange={handlePhoneNumberChange} placeholder="Phone Number" required type="text" name="phone_number" id="phone_number" className="form-control" />
                 <label htmlFor="phone_number">Phone Number</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input value={address} onChange={handleAddressChange} placeholder="Address" required type="text" name="address" id="address" className="form-control" />
+                <label htmlFor="address">Address</label>
               </div>
               <button className="btn btn-primary">Create</button>
             </form>

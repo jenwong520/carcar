@@ -30,9 +30,9 @@ function SalespeopleList() {
             <table className='table table-striped border-bottom'>
                 <thead>
                     <tr>
-                        <th>Employee ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Employee ID</th>
                         <th></th>
                     </tr>
                 </thead>
