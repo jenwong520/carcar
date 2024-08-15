@@ -1,111 +1,97 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-function VehicleModelsForm() {
-    const [manufacturers, setManufacturers] = useState([]);
-    const [name, setName] = useState('');
-    const [pictureUrl, setPictureUrl] = useState('');
-    const [manufacturer, setManufacturer] = useState('');
+function CustomerForm() {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [address, setAddress] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
 
-    const handleNameChange = (event) => {
+    const handleFirstNameChange = (event) => {
         const value = event.target.value;
-        setName(value);
-    }
+        setFirstName(value);
+    };
 
-    const handlePictureUrlChange = (event) => {
+    const handleLastNameChange = (event) => {
         const value = event.target.value;
-        setPictureUrl(value);
-    }
+        setLastName(value);
+    };
 
-    const handleManufacturerChange = (event) => {
+    const handleAddressChange = (event) => {
         const value = event.target.value;
-        setManufacturer(value);
-    }
+        setAddress(value);
+    };
+
+    const handlePhoneNumberChange = (event) => {
+        const value = event.target.value;
+        setPhoneNumber(value);
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         const data = {
-            name,
-            picture_url: pictureUrl,
-            manufacturer_id: manufacturer,
+          first_name: firstName,
+          last_name: lastName,
+          address,
+          phone_number: phoneNumber,
         };
 
-        const modelsUrl = 'http://localhost:8100/api/models/';
+        const customersUrl = 'http://localhost:8090/api/customers/';
         const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            },
+          method: "post",
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         };
 
         try {
-            const response = await fetch(modelsUrl, fetchConfig);
-            if (response.ok) {
-                const newModel = await response.json();
-                console.log("Created", newModel);
-                resetForm()
+          const response = await fetch(customersUrl, fetchConfig);
+          if (response.ok) {
+            const newCustomers = await response.json();
+            console.log(newCustomers);
 
-            } else {
-                const errorData = await response.json();
-                console.error(errorData)
-            }
+            setFirstName('');
+            setLastName('');
+            setAddress('');
+            setAddress('');
+
+          } else {
+            console.error(`Error: ${response.status} ${response.statusText}`);
+          }
         } catch (error) {
-            console.error('Fetch Error:', error);
-        }
-    };
-
-const resetForm = () => {
-    setName('');
-    setPictureUrl('');
-    setManufacturer('');
-}
-
-    const fetchData = async () => {
-        const url = 'http://localhost:8100/api/manufacturers/';
-        const response = await fetch(url);
-        if (response.ok) {
-            const data = await response.json();
-            setManufacturers(data.manufacturers);
+          console.error('Fetch error:', error);
         }
     }
 
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-        return (
-            <div className="row">
-          <div className="offset-3 col-6">
-            <div className="shadow p-4 mt-4">
-              <h1>Create A Vehicle Model</h1>
-              <form onSubmit = {handleSubmit} id="create-model-form">
-                <div className="form-floating mb-3">
-                  <input value={name} onChange={handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control"/>
-                  <label htmlFor="name">Model Name</label>
-                </div>
-                <div className="form-floating mb-3">
-                  <input value={pictureUrl} onChange={handlePictureUrlChange} placeholder="Picture" required type="text" name="picture_url" id="picture_url" className="form-control"/>
-                  <label htmlFor="picture_url">Picture Url</label>
-                </div>
-                <div className="mb-3">
-                  <select value={manufacturer} onChange={handleManufacturerChange} required name="manufacturer" id="manufacturer" className="form-select">
-                    <option value="">Choose A Manufacturer</option>
-                    {manufacturers.map(manufacturer => {
-                        return (
-                            <option key={manufacturer.id} value={manufacturer.id}>
-                                {manufacturer.name}
-                            </option>
-                        );
-                    })}
-                  </select>
-                </div>
-                <button className="btn btn-primary">Create</button>
-              </form>
-            </div>
+    return (
+      <div className="row">
+        <div className="offset-3 col-6">
+          <div className="shadow p-4 mt-4">
+            <h1>Add A Customer</h1>
+            <form onSubmit={handleSubmit} id="create-manufacturer-form">
+              <div className="form-floating mb-3">
+                <input value={firstName} onChange={handleFirstNameChange} placeholder="First Name" required type="text" name="first_name" id="first_name" className="form-control" />
+                <label htmlFor="first_name">First Name</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input value={lastName} onChange={handleLastNameChange} placeholder="Last Name" required type="text" name="last_name" id="last_name" className="form-control" />
+                <label htmlFor="last_name">Last Name</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input value={address} onChange={handleAddressChange} placeholder="Address" required type="text" name="address" id="address" className="form-control" />
+                <label htmlFor="address">Address</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input value={phoneNumber} onChange={handlePhoneNumberChange} placeholder="Phone Number" required type="text" name="phone_number" id="phone_number" className="form-control" />
+                <label htmlFor="phone_number">Phone Number</label>
+              </div>
+              <button className="btn btn-primary">Create</button>
+            </form>
           </div>
         </div>
-      );
-    };
+      </div>
+    );
+  }
 
-      export default VehicleModelsForm;
+export default CustomerForm
