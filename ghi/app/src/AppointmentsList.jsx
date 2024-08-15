@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function AppointmentsList(props) {
+function AppointmentsList() {
 
     function formatDate(dateString) {
         const date = new Date(dateString);
@@ -22,18 +22,22 @@ function AppointmentsList(props) {
 
     const [appointments, setAppointments] = useState([]);
     const [automobiles, setAutomobiles] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const fetchAppointments = async () => {
         const appointmentsUrl = 'http://localhost:8080/api/appointments/';
         const response = await fetch(appointmentsUrl);
         if (response.ok) {
             const data = await response.json();
-            setAppointments(data.appointments);
+            const activeAppointments = data.appointments.filter(appointment => appointment.status === 'active');
+            setAppointments(activeAppointments);
+            // setAppointments(data.appointments);
         }
+        setLoading(false);
     };
 
     const fetchAutomobiles = async () => {
-        const automobilesUrl = 'http://localhost:8080/api/automobiles/';
+        const automobilesUrl = 'http://localhost:8100/api/automobiles/';
         const response = await fetch(automobilesUrl);
         if (response.ok) {
             const data = await response.json();
@@ -50,6 +54,26 @@ function AppointmentsList(props) {
         const auto = automobiles.find(auto => auto.vin === vin);
         return auto ? auto.sold : false;
     };
+
+    const handleCancel = async (id) => {
+        const cancelUrl = `http://localhost:8080/api/appointments/${id}/cancel/`;
+        const response = await fetch(cancelUrl, { method: 'PUT' });
+        if (response.ok) {
+            fetchAppointments();  // Re-fetch appointments to update the list
+        }
+    };
+
+    const handleFinish = async (id) => {
+        const finishUrl = `http://localhost:8080/api/appointments/${id}/finish/`;
+        const response = await fetch(finishUrl, { method: 'PUT' });
+        if (response.ok) {
+            fetchAppointments();  // Re-fetch appointments to update the list
+        }
+    };
+
+    if (loading) {
+        return <p>Loading appointments...</p>;
+    }
 
     return (
 		<>
@@ -68,7 +92,7 @@ function AppointmentsList(props) {
 					</tr>
 				</thead>
 				<tbody>
-					{props.appointments.map(appointment => {
+					{appointments.map(appointment => {
                         const vip = isVip(appointment.vin);
 						return (
 						<tr key={appointment.id}>
@@ -79,7 +103,10 @@ function AppointmentsList(props) {
                             <td>{ formatTime(appointment.date_time) }</td>
 							<td>{ appointment.technician.first_name } { appointment.technician.last_name }</td>
 							<td>{ appointment.reason }</td>
-                            <td></td>
+                            <td>
+                                <button onClick={() => handleCancel(appointment.id)} className="btn btn-danger">Cancel</button>
+                                <button onClick={() => handleFinish(appointment.id)} className="btn btn-success">Finish</button>
+                            </td>
 						</tr>
 						);
 					})}

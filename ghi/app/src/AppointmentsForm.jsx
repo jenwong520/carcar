@@ -142,10 +142,10 @@ return (
                   );
                 })}
               </select>
-              <div className="form-floating mb-3">
+            </div>
+            <div className="form-floating mb-3">
               <input value={reason} onChange={handleReasonChange} placeholder="Enter reason" required type="text" name="reason" id="reason" className="form-control" />
               <label htmlFor="reason">Reason</label>
-            </div>
             </div>
             <button className="btn btn-primary">Create</button>
           </form>
