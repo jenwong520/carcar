@@ -156,10 +156,15 @@ def api_customer(request, pk):
 @require_http_methods(["GET", "POST"])
 def api_sales(request):
     if request.method == "GET":
-        sales = Sale.objects.all()
+        salesperson_id = request.GET.get('salesperson', None)
+        if salesperson_id:
+            sales = Sale.objects.filter(salesperson__id=salesperson_id)
+        else:
+            sales = Sale.objects.all()
         return JsonResponse(
             {"sales": sales},
-            encoder=SaleEncoder
+            encoder=SaleEncoder,
+            safe=False
         )
     else:
         try:

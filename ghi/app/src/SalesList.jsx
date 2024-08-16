@@ -52,7 +52,7 @@ function SalesList() {
                                 <td>{sales.automobile.vin}</td>
                                 <td>{formatPrice(sales.price)}</td>
                                 <td>
-                                    <button onClick={() => deleteSales(sales.id)} className='btn btn-danger'>Delete</button>
+                                    <button onClick={() => deleteSales(sales.id)} className='btn btn-outline-danger'>Delete</button>
                                 </td>
                             </tr>
                         );

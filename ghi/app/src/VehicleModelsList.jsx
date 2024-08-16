@@ -33,6 +33,7 @@ function ModelsList(props) {
                         <th>Name</th>
                         <th>Manufacturer</th>
                         <th>Picture</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +48,7 @@ function ModelsList(props) {
                                     </div>
                                 </td>
                                 <td>
-                                    <button onClick={() => deleteModels(models.id)} className='btn btn-danger'>Delete</button>
+                                    <button onClick={() => deleteModels(models.id)} className='btn btn-outline-danger'>Delete</button>
                                 </td>
                             </tr>
                         );
