@@ -30,7 +30,7 @@ function App(props) {
 		props.customers === undefined &&
 		props.sales === undefined &&
 		props.technicians === undefined &&
-		props.appointments === undefined &&
+		props.appointments === undefined 
 	) {
 		return null;
 	}
@@ -42,8 +42,8 @@ function App(props) {
 					<Route path="/" element={<MainPage />} />
 					<Route path="/manufacturers/" element={<ManufacturersList manufacturers={props.manufacturers} />} />
 					<Route path="/manufacturers/create/" element={<ManufacturersForm />} />
-					<Route path="/models" element={<VehicleModelsList models={props.models} />} />
-					<Route path="/models/create" element={<VehicleModelsForm />} />
+					<Route path="/models/" element={<VehicleModelsList models={props.models} />} />
+					<Route path="/models/create/" element={<VehicleModelsForm />} />
 					<Route path="/automobiles/" element={<AutomobilesList autos={props.autos} />} />
 					<Route path="/automobiles/create/" element={<AutomobilesForm />} />
 					<Route path="/salespeople/" element={<SalespeopleList salespeople={props.salespeople} />} />

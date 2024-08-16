@@ -46,7 +46,9 @@ function CustomersList() {
                                 <td>{customers.phone_number}</td>
                                 <td>{customers.address}</td>
                                 <td>
-                                    <button onClick={() => deleteCustomers(customers.id)} className='btn btn-outline-danger'>Delete</button>
+                                    <p align="right">
+                                        <button onClick={() => deleteCustomers(customers.id)} className='btn btn-outline-danger'>Delete</button>
+                                    </p>
                                 </td>
                             </tr>
                         );

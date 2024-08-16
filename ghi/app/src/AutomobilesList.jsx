@@ -51,7 +51,7 @@ function AutomobilesList() {
 							<td>{ (auto.sold).toString() }</td>
 							<td>
 								<p align="right">
-								<button onClick={() => deleteAutomobiles(auto.vin)} className='btn btn-outline-danger'>Delete</button>
+									<button onClick={() => deleteAutomobiles(auto.vin)} className='btn btn-outline-danger'>Delete</button>
 								</p>
 							</td>
 						</tr>

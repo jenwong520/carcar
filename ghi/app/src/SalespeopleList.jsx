@@ -44,7 +44,9 @@ function SalespeopleList() {
                                 <td>{salespeople.last_name} </td>
                                 <td>{salespeople.employee_id}</td>
                                 <td>
-                                    <button onClick={() => deleteSalespeople(salespeople.id)} className='btn btn-outline-danger'>Delete</button>
+                                    <p align="right">
+                                        <button onClick={() => deleteSalespeople(salespeople.id)} className='btn btn-outline-danger'>Delete</button>
+                                    </p>
                                 </td>
                             </tr>
                         );
