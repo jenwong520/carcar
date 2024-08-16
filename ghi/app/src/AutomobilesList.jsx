@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 function AutomobilesList() {
-
 	const [automobiles, setAutomobiles] = useState([]);
 
 	const fetchAutomobiles = async () => {
@@ -28,7 +27,7 @@ function AutomobilesList() {
     return (
 		<>
 		<h1>Automobiles</h1>
-			<table className="table table-striped">
+			<table className="table table-striped border-bottom">
 				<thead>
 					<tr>
 						<th>VIN</th>
@@ -43,7 +42,7 @@ function AutomobilesList() {
 				<tbody>
 					{automobiles.map(auto => {
 						return (
-						<tr key={auto.href}>
+						<tr key={auto.id}>
 							<td>{ auto.vin }</td>
 							<td>{ auto.color }</td>
 							<td>{ auto.year }</td>

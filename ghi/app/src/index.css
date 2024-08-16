@@ -17,6 +17,6 @@ tr {
 }
 
 .table thead th {
-    border-bottom: 4px solid #333; /* Darker border at the bottom of the header */
+    border-bottom: 1px solid #333;
     padding: 8px;
 }

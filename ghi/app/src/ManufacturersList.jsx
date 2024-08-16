@@ -6,6 +6,7 @@ function ManufacturersList(props) {
 				<thead>
 					<tr>
 						<th>Name</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -13,6 +14,9 @@ function ManufacturersList(props) {
 						return (
 						<tr key={manufacturer.href}>
 							<td>{ manufacturer.name }</td>
+							<td>
+                                <button onClick={() => deleteCustomers(customers.id)} className='btn btn-outline-danger'>Delete</button>
+                            </td>
 						</tr>
 						);
 					})}

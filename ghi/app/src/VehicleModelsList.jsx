@@ -26,7 +26,7 @@ function ModelsList() {
 
     return (
         <>
-        <h1>Models</h1>
+            <h1>Models</h1>
             <table className='table table-striped'>
                 <thead>
                     <tr>
@@ -44,12 +44,12 @@ function ModelsList() {
                                 <td>{models.manufacturer.name}</td>
                                 <td>
                                     <div style={{ width: '25rem', height: '15rem', overflow: 'hidden', display: 'inline-block' }} >
-                                        <img src={models.picture_url} alt="Model" style={{width:"100%", height:"100%", objectFit:"cover"}} />
+                                        <img src={models.picture_url} alt="Model" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                                     </div>
                                 </td>
                                 <td>
                                     <p align="right">
-                                    <button onClick={() => deleteModels(models.id)} className='btn btn-outline-danger'>Delete</button>
+                                        <button onClick={() => deleteModels(models.id)} className='btn btn-outline-danger'>Delete</button>
                                     </p>
                                 </td>
                             </tr>
