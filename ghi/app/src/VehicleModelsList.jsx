@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function ModelsList(props) {
+function ModelsList() {
     const [models, setModels] = useState([]);
 
     const fetchModels = async () => {
@@ -37,18 +37,20 @@ function ModelsList(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.models.map(models => {
+                    {models.map(models => {
                         return (
                             <tr key={models.id}>
                                 <td>{models.name} </td>
                                 <td>{models.manufacturer.name}</td>
                                 <td>
-                                    <div style={{ width: '25%', height: '25%', overflow: 'hidden', position: 'center' }} >
-                                        <img src={models.picture_url} alt="Logo" width="100%" height="100%" objectFit="cover" objectPosition="center" position="absolute" />
+                                    <div style={{ width: '25rem', height: '15rem', overflow: 'hidden', display: 'inline-block' }} >
+                                        <img src={models.picture_url} alt="Model" style={{width:"100%", height:"100%", objectFit:"cover"}} />
                                     </div>
                                 </td>
                                 <td>
-                                    <button onClick={() => deleteModels(models.id)} className='btn btn-danger'>Delete</button>
+                                    <p align="right">
+                                    <button onClick={() => deleteModels(models.id)} className='btn btn-outline-danger'>Delete</button>
+                                    </p>
                                 </td>
                             </tr>
                         );

@@ -1,4 +1,30 @@
-function AutomobilesList(props) {
+import React, { useEffect, useState } from 'react';
+
+function AutomobilesList() {
+
+	const [automobiles, setAutomobiles] = useState([]);
+
+	const fetchAutomobiles = async () => {
+        const url = 'http://localhost:8100/api/automobiles/';
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json();
+            setAutomobiles(data.autos);
+        }
+    };
+
+    const deleteAutomobiles = async (vin) => {
+        const url = `http://localhost:8100/api/automobiles/${vin}/`;
+        const response = await fetch(url, { method: "DELETE" });
+        if (response.ok) {
+            setAutomobiles(automobiles.filter(auto => auto.vin !== vin));
+        }
+    };
+
+    useEffect(() => {
+        fetchAutomobiles();
+    }, []);
+
     return (
 		<>
 		<h1>Automobiles</h1>
@@ -11,10 +37,11 @@ function AutomobilesList(props) {
 						<th>Model</th>
 						<th>Manufacturer</th>
 						<th>Sold</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					{props.autos.map(auto => {
+					{automobiles.map(auto => {
 						return (
 						<tr key={auto.href}>
 							<td>{ auto.vin }</td>
@@ -23,6 +50,11 @@ function AutomobilesList(props) {
 							<td>{ auto.model.name }</td>
 							<td>{ auto.model.manufacturer.name }</td>
 							<td>{ (auto.sold).toString() }</td>
+							<td>
+								<p align="right">
+								<button onClick={() => deleteAutomobiles(auto.vin)} className='btn btn-outline-danger'>Delete</button>
+								</p>
+							</td>
 						</tr>
 						);
 					})}
