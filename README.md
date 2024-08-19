@@ -16,28 +16,28 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
+<!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://gitlab.com/ThisIsDodger/project-beta">
     <img src="CarCar.png" alt="Logo" width="auto" height="120">
+  </a>
 
 <h3 align="center">CarCar</h3>
 
   <p align="center">
-    CarCar is an application designed to manage key aspects of an automobile dealership, including inventory management, service appointments, and sales tracking, utilizing Django for RESTful APIs and React for the front-end interface.
+     A microservices-based application for managing an automobile dealership, focusing on inventory, service, and sales.
     <br />
     <a href="https://gitlab.com/ThisIsDodger/project-beta"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://gitlab.com/ThisIsDodger/project-beta">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://gitlab.com/ThisIsDodger/project-beta/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://gitlab.com/ThisIsDodger/project-beta/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
-
-
-
+</div>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -70,13 +70,12 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+CarCar is a microservices-based application designed to manage key operations of an automobile dealership. The features separate services for handling inventory, sales, and automobile servicing. It demonstrates the power and flexibility of microservices in creating scalable and maintainable systems. `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -89,26 +88,18 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Service microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+The service microservice manages the vehicle service appointments and integrates with the inventory microservice to retrieve and update automobile data. It includes models for customers, appointments, and service technicians.
 
 ### Sales microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+The sales microservice handles the sales transactions and customer information. It integrates with the inventory microservice to ensure only available vehicles can be sold and updates the vehicle status after a sale is completed. The models include Salesperson, Customer, Sale, and AutomobileVO.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -117,36 +108,43 @@ microservice, here.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+You will need the following software installed:
+
 * npm
   ```sh
   npm install npm@latest -g
   ```
 
+  * Python (for Django backend)
+  ```sh
+  sudo apt-get install python3
+  ```
+
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://gitlab.com/ThisIsDodger/project-beta
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
+3. Install Python dependencies
    ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
+   pip install -r requirements.txt
+   ```
+4. Set up the database
+   ```sh
+    python manage.py migrate
+   ```
+5. Start the development server
+   ```sh
+    npm start
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -158,6 +156,12 @@ This is an example of how to list things you need to use the software and how to
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
+The project allows users to manage inventory, create and track sales, and schedule service appointments. Here are some key use cases:
+
+    1. Manage Inventory: Add, view, and update vehicle information in the inventory.
+    2. Track Sales: Record new sales and view a history of sales transactions by salesperson.
+    3. Schedule Service Appointments: Manage appointments for vehicle maintenance and repairs.
+
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -167,12 +171,12 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
+- [ ] Add more detailed reports for sales and service data
+- [ ] Implement user authentication and roles
+- [ ] Improve UI with additional themes
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://gitlab.com/ThisIsDodger/project-beta/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -183,8 +187,7 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+To contribute:
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -196,7 +199,7 @@ Don't forget to give the project a star! Thanks again!
 
 ### Top contributors:
 
-<a href="https://github.com/github_username/repo_name/graphs/contributors">
+<a href="https://gitlab.com/ThisIsDodger/project-beta/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=github_username/repo_name" alt="contrib.rocks image" />
 </a>
 
@@ -216,7 +219,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://gitlab.com/ThisIsDodger/project-beta](https://gitlab.com/ThisIsDodger/project-beta)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -225,9 +228,9 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [React](React)
+* [Django](Django)
+* [Bootstrap](Bootstrap)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
