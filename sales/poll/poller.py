@@ -21,8 +21,9 @@ def get_sales():
         AutomobileVO.objects.update_or_create(
             vin=auto["vin"],
             defaults={
+                "import_href": auto["href"],
                 "vin": auto["vin"],
-                "sold": auto.get["sold", False],
+                "sold": auto["sold"],
                 },
         )
 

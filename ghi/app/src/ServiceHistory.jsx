@@ -4,16 +4,21 @@ function ServiceHistory() {
     const [appointments, setAppointments] = useState([]);  // All fetched appointments
     const [filteredAppointments, setFilteredAppointments] = useState([]);  // Filtered appointments for display
     const [vin, setVin] = useState('');  // VIN input value
-    const [automobiles, SetAutomobiles] = useState([]);
+    const [automobiles, setAutomobiles] = useState([]);
+
+    const isVip = (vin) => {
+        const auto = automobiles.find(auto => auto.vin === vin);
+        return auto ? auto.sold : false;
+    };
 
     const fetchAppointments = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/appointments/');
             if (response.ok) {
                 const data = await response.json();
-                setAppointments(data.appointments);  // Store all appointments
-                setFilteredAppointments(data.appointments);  // Initially, show all appointments
-            } else {
+                setAppointments(data.appointments);
+                setFilteredAppointments(data.appointments);
+
                 console.error("Failed to fetch appointments");
             }
         } catch (error) {
@@ -21,8 +26,18 @@ function ServiceHistory() {
         }
     };
 
+    const fetchAutomobiles = async () => {
+        const automobilesUrl = 'http://localhost:8100/api/automobiles/';
+        const response = await fetch(automobilesUrl);
+        if (response.ok) {
+            const data = await response.json();
+            setAutomobiles(data.autos);
+        }
+    };
+
     useEffect(() => {
         fetchAppointments();  // Fetch appointments when the component mounts
+        fetchAutomobiles();
     }, []);
 
     const handleVinChange = (event) => {
@@ -42,10 +57,7 @@ function ServiceHistory() {
         }
     };
 
-    const isVip = (vin) => {
-        const auto = automobiles.find(auto => auto.vin === vin);
-        return auto ? auto.sold : false;
-    };
+
 
     return (
         <div>
