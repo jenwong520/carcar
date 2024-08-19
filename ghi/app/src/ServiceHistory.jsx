@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 function ServiceHistory() {
-    const [appointments, setAppointments] = useState([]);  // All fetched appointments
-    const [filteredAppointments, setFilteredAppointments] = useState([]);  // Filtered appointments for display
-    const [vin, setVin] = useState('');  // VIN input value
+    const [appointments, setAppointments] = useState([]);
+    const [filteredAppointments, setFilteredAppointments] = useState([]);
+    const [vin, setVin] = useState('');
     const [automobiles, setAutomobiles] = useState([]);
 
     const isVip = (vin) => {
@@ -36,7 +36,7 @@ function ServiceHistory() {
     };
 
     useEffect(() => {
-        fetchAppointments();  // Fetch appointments when the component mounts
+        fetchAppointments();
         fetchAutomobiles();
     }, []);
 

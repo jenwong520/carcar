@@ -26,7 +26,7 @@ function SalespersonHistory() {
     };
 
     const fetchSales = async (salespersonId) => {
-        if (!salespersonId) return;  // Exit if no salesperson is selected
+        if (!salespersonId) return;
 
         const url = `http://localhost:8090/api/sales?salesperson=${salespersonId}`;
         try {
