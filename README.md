@@ -138,15 +138,19 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://gitlab.com/ThisIsDodger/project-beta
    ```
-2. Set up the database
+2. Change directory
+   ```sh
+   cd project-beta
+   ```
+3. Set up the database
    ```sh
    docker volume create beta-data
    ```
-3. Build Docker containers
+4. Build Docker containers
    ```sh
    docker compose build
    ```
-4. Run Docker containers
+5. Run Docker containers
    ```sh
     docker compose up
    ```
